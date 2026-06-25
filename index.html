@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agro Forte - Calculadora de Consumo de Água</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg, #2e7d32, #81c784);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    background:white;
+    width:90%;
+    max-width:500px;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+h1{
+    text-align:center;
+    color:#2e7d32;
+    margin-bottom:10px;
+}
+
+.subtitulo{
+    text-align:center;
+    color:#555;
+    margin-bottom:25px;
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    font-weight:bold;
+    color:#333;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:2px solid #81c784;
+    border-radius:8px;
+    margin-top:5px;
+}
+
+button{
+    width:100%;
+    margin-top:25px;
+    padding:14px;
+    background:#2e7d32;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#1b5e20;
+}
+
+.resultado{
+    margin-top:25px;
+    background:#e8f5e9;
+    padding:15px;
+    border-radius:10px;
+    display:none;
+}
+
+.resultado h2{
+    color:#1b5e20;
+    margin-bottom:10px;
+}
+
+.info{
+    margin-top:20px;
+    font-size:14px;
+    color:#555;
+    text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🌱 Agro Forte</h1>
+
+    <p class="subtitulo">
+        Calculadora de Consumo de Água na Agricultura
+    </p>
+
+    <label>Área Plantada (hectares)</label>
+    <input type="number" id="area" placeholder="Ex: 10">
+
+    <label>Consumo por Hectare (L/dia)</label>
+    <input type="number" id="consumo" placeholder="Ex: 5000">
+
+    <button onclick="calcular()">
+        Calcular Consumo
+    </button>
+
+    <div class="resultado" id="resultado">
+        <h2>Resultado</h2>
+
+        <p id="diario"></p>
+        <p id="mensal"></p>
+        <p id="anual"></p>
+    </div>
+
+    <div class="info">
+        💧 O uso consciente da água ajuda a preservar os recursos naturais e aumenta a sustentabilidade no campo.
+    </div>
+
+</div>
+
+<script>
+function calcular(){
+
+    let area = Number(document.getElementById("area").value);
+    let consumo = Number(document.getElementById("consumo").value);
+
+    if(area <= 0 || consumo <= 0){
+        alert("Preencha os valores corretamente!");
+        return;
+    }
+
+    let diario = area * consumo;
+    let mensal = diario * 30;
+    let anual = diario * 365;
+
+    document.getElementById("resultado").style.display = "block";
+
+    document.getElementById("diario").innerHTML =
+        "💧 Consumo Diário: <strong>" +
+        diario.toLocaleString('pt-BR') +
+        " litros</strong>";
+
+    document.getElementById("mensal").innerHTML =
+        "📅 Consumo Mensal: <strong>" +
+        mensal.toLocaleString('pt-BR') +
+        " litros</strong>";
+
+    document.getElementById("anual").innerHTML =
+        "🌎 Consumo Anual: <strong>" +
+        anual.toLocaleString('pt-BR') +
+        " litros</strong>";
+}
+</script>
+
+</body>
+</html>
